@@ -11,37 +11,29 @@ class ErreurDivisionParZero(Exception):
 class Calculatrice:
     def __init__(self):
         self.pile = []
-
     def empiler(self, valeur: int):
         self.pile.append(valeur)
-
     def depiler(self) -> int:
         if not self.pile:
             raise ErreurPileVide("Pile vide")
         return self.pile.pop()
-
     def addition(self):
         b, a = self.depiler(), self.depiler()
         self.empiler(a + b)
-
     def soustraction(self):
         b, a = self.depiler(), self.depiler()
         self.empiler(a - b)
-
     def multiplication(self):
         b, a = self.depiler(), self.depiler()
         self.empiler(a * b)
-
     def division(self):
         b, a = self.depiler(), self.depiler()
         if b == 0:
             raise ErreurDivisionParZero("Division par zéro interdite")
         self.empiler(a // b)
-
     def modulo(self):
         b, a = self.depiler(), self.depiler()
         self.empiler(a % b)
-
     def puissance(self):
         b, a = self.depiler(), self.depiler()
         self.empiler(pow(a, b))
@@ -51,7 +43,6 @@ class Calculatrice:
         if a < 0:
             raise ValueError("Factoriel non défini pour les nombres négatifs")
         self.empiler(math.factorial(a))
-
     def evaluer(self, tokens):
         """Évaluer une expression en notation polonaise inversée (liste de tokens)."""
         operations = {
